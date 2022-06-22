@@ -1,10 +1,10 @@
-require './nameable'
+require "./nameable"
 
 class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id, :rentals
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age:, name:, parent_permission: true)
     super()
     @name = name
     @age = age
