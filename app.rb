@@ -1,7 +1,7 @@
-require "./book"
-require "./rental"
-require "./student"
-require "./teacher"
+require './book'
+require './rental'
+require './student'
+require './teacher'
 
 class App
   def initialize
@@ -14,8 +14,6 @@ class App
   def list_people
     if @list_people.any? == false
       puts "There's no people registered. Press 1 to return to menu."
-      option = gets.chomp
-      show_menu unless option != "1"
     else
       @list_people.each do |person|
         if person.is_a?(Student)
@@ -24,19 +22,19 @@ class App
           puts " [Teacher] ID: #{person.id} Name: #{person.name} Age: #{person.age}"
         end
       end
-      puts "Press 1 to return"
-      option = gets.chomp
-      show_menu unless option != "1"
+      puts 'Press 1 to return'
     end
+    option = gets.chomp
+    show_menu unless option != '1'
   end
 
   def insert_person
-    puts "which kind of person want to registered ? [1: Student 2: Teacher 3: Cancel]"
+    puts 'which kind of person want to registered ? [1: Student 2: Teacher 3: Cancel]'
     option = gets.chomp
     case option
-    when "1"
+    when '1'
       insert_student
-    when "2"
+    when '2'
       insert_teacher
     else
       show_menu
@@ -44,29 +42,29 @@ class App
   end
 
   def insert_student
-    print "Insert Name:"
+    print 'Insert Name:'
     name = gets.chomp
-    print "Insert Age:"
+    print 'Insert Age:'
     age = gets.chomp
-    print "Has permission? [y, n] "
+    print 'Has permission? [y, n] '
     permission = gets.chomp
-    permission = permission == "y" ? true : false
+    permission = permission == 'y'
     student = Student.new(name: name, age: age, parent_permission: permission)
     @list_people.push(student)
-    puts "Student created Succesfully"
+    puts 'Student created Succesfully'
     show_menu
   end
 
   def insert_teacher
-    print "Insert Name: "
+    print 'Insert Name: '
     name = gets.chomp
-    print "Insert Age: "
+    print 'Insert Age: '
     age = gets.chomp
-    print "Insert Specialization: "
+    print 'Insert Specialization: '
     spec = gets.chomp
     parent_auto = true
     @list_people.push(Teacher.new(age: age, name: name, specialization: spec, parent_permission: parent_auto))
-    puts "Teacher created Succesfully"
+    puts 'Teacher created Succesfully'
     show_menu
   end
 
@@ -76,24 +74,24 @@ class App
     if @list_books.empty?
       puts "There's no books registered, Press 1 to return to menu."
       selected = gets.chomp
-      show_menu if selected == "1"
+      show_menu if selected == '1'
     else
-      puts "List of books:"
+      puts 'List of books:'
       @list_books.each { |b| puts "Title: #{b.title} Author: #{b.author}" }
-      puts "Add another Book ? [1:yes no:2]"
+      puts 'Add another Book ? [1:yes no:2]'
       option = gets.chomp
-      option == "1" ? insert_book : show_menu
+      option == '1' ? insert_book : show_menu
     end
   end
 
   def insert_book
-    print "Insert Title: "
+    print 'Insert Title: '
     title = gets.chomp
-    print "Insert Author: "
+    print 'Insert Author: '
     author = gets.chomp
     new_book = Book.new(title, author)
     @list_books.push(new_book)
-    puts "Book created Succesfully"
+    puts 'Book created Succesfully'
     show_menu
   end
 
@@ -101,49 +99,49 @@ class App
 
   def list_rental
     if @list_books.any? == false || @list_people.any? == false
-      puts "Sorry, but you have to create a person and book first."
+      puts 'Sorry, but you have to create a person and book first.'
     else
-      print "Please, Insert person ID: "
+      print 'Please, Insert person ID: '
       person_id = gets.chomp.to_i
       new_arr_rentals = @list_rentals.select { |r| r.person.id == person_id }
-      puts "Rentals:"
+      puts 'Rentals:'
       new_arr_rentals.each { |r| puts "Date: #{r.date}, Book #{r.book.title} by #{r.book.author}" }
     end
     show_menu
   end
 
   def insert_rental
-    puts "Select One of the people bellow by number (not ID):"
+    puts 'Select One of the people bellow by number (not ID):'
     @list_people.each_with_index { |p, i| puts "#{i}) Name: #{p.name} ID: #{p.id} Age: #{p.age}" }
     idx_person = gets.chomp.to_i
     #====choose book=====#
-    puts "Select One of the books bellow by number:"
+    puts 'Select One of the books bellow by number:'
     @list_books.each_with_index { |b, i| puts "#{i}) Title: #{b.title} Author: #{b.author}" }
     idx_book = gets.chomp.to_i
-    puts "Please, Insert the Date:"
+    puts 'Please, Insert the Date:'
     date = gets.chomp
     @list_rentals.push(Rental.new(date, @list_books[idx_book], @list_people[idx_person]))
-    puts "Rental registered successfully"
+    puts 'Rental registered successfully'
     show_menu
   end
 
   #=====Main functionality=====#
   def check_option(option)
     case option
-    when "1"
+    when '1'
       list_books
-    when "2"
+    when '2'
       list_people
-    when "3"
+    when '3'
       list_rental
-    when "4"
+    when '4'
       insert_book
-    when "5"
+    when '5'
       insert_rental
-    when "6"
+    when '6'
       insert_person
     else
-      puts "Thank you for using this App."
+      puts 'Thank you for using this App.'
       exit
     end
   end
