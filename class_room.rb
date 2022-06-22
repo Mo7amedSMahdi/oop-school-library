@@ -1,4 +1,4 @@
-class Classroom
+class ClassRoom
   attr_accessor :label
   attr_reader :students
 
