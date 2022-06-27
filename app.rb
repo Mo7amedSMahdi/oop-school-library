@@ -3,39 +3,15 @@ require './rental'
 require './student'
 require './teacher'
 require './people_manager'
+require './book_manager'
 
 class App
   def initialize
-    @list_books = []
     @people = PeopleManager.new
+    @books = BookManager.new
     @list_rentals = []
   end
   #=====Books=====#
-
-  def list_books
-    if @list_books.empty?
-      puts "There's no books registered, Press 1 to return to menu."
-      selected = gets.chomp
-      show_menu if selected == '1'
-    else
-      puts 'List of books:'
-      @list_books.each { |b| puts "Title: #{b.title} Author: #{b.author}" }
-      puts 'Add another Book ? [1:yes no:2]'
-      option = gets.chomp
-      option == '1' ? insert_book : show_menu
-    end
-  end
-
-  def insert_book
-    print 'Insert Title: '
-    title = gets.chomp
-    print 'Insert Author: '
-    author = gets.chomp
-    new_book = Book.new(title, author)
-    @list_books.push(new_book)
-    puts 'Book created Succesfully'
-    show_menu
-  end
 
   #=====Rentals=====#
 
@@ -71,13 +47,13 @@ class App
   def check_option(option)
     case option
     when '1'
-      list_books
+      @books.display_books
     when '2'
       @people.display_people
     when '3'
       list_rental
     when '4'
-      insert_book
+      @books.insert_book
     when '5'
       insert_rental
     when '6'
