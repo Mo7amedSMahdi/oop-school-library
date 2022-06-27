@@ -17,53 +17,53 @@ class PeopleManager
         end
       end
     end
-    puts "Press 1 to return..."
+    puts 'Press 1 to return...'
     option = gets.chomp
-    nil if option == "1"
+    nil if option == '1'
   end
 
   def insert_person
-    puts "which kind of person want to registered ? [1: Student 2: Teacher 3: Cancel]"
+    puts 'which kind of person want to registered ? [1: Student 2: Teacher 3: Cancel]'
     option = gets.chomp
     case option
-    when "1"
+    when '1'
       insert_student
-    when "2"
+    when '2'
       insert_teacher
     else
-      puts "Please choose a valid option"
+      puts 'Please choose a valid option'
       insert_person
     end
   end
 
   def insert_student
-    print "Insert Name:"
+    print 'Insert Name:'
     name = gets.chomp
-    print "Insert Age:"
+    print 'Insert Age:'
     age = gets.chomp
-    print "Has permission? [y, n] "
+    print 'Has permission? [y, n] '
     permission = gets.chomp
-    permission = permission == "y"
+    permission = permission == 'y'
     student = Student.new(name: name, age: age, parent_permission: permission)
     @list_people.push(student)
-    puts "Student created Succesfully, need to insert another person? [1: yes 2: no]"
+    puts 'Student created Succesfully, need to insert another person? [1: yes 2: no]'
     option = gets.chomp
-    insert_person if option == "1"
+    insert_person if option == '1'
     nil
   end
 
   def insert_teacher
-    print "Insert Name: "
+    print 'Insert Name: '
     name = gets.chomp
-    print "Insert Age: "
+    print 'Insert Age: '
     age = gets.chomp
-    print "Insert Specialization: "
+    print 'Insert Specialization: '
     spec = gets.chomp
     parent_auto = true
     @list_people.push(Teacher.new(age: age, name: name, specialization: spec, parent_permission: parent_auto))
-    puts "Teacher created Succesfully, need to insert another person? [1: yes 2: no]"
+    puts 'Teacher created Succesfully, need to insert another person? [1: yes 2: no]'
     option = gets.chomp
-    insert_person if option == "1"
+    insert_person if option == '1'
     nil
   end
 end
