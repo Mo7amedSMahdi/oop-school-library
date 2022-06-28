@@ -3,12 +3,17 @@ require './rental'
 require './persons_manager'
 require './book_manager'
 require './rental_manager'
+require './json_accessor'
 
 class App
   def initialize
-    @people = PersonsManager.new
-    @books = BookManager.new
-    @rentals = RentalManager.new(book: @books, person: @people)
+    @book_accessor = JsonAccessor.new('books')
+    @person_accessor = JsonAccessor.new('person')
+    @rental_accessor = JsonAccessor.new('rental')
+
+    @books = BookManager.new(@book_accessor)
+    @people = PersonsManager.new(@person_accessor)
+    @rentals = RentalManager.new(book: @books, person: @people, rental_accessor: @rental_accessor)
   end
 
   #=====Main functionality=====#
@@ -38,8 +43,12 @@ class App
       puts "1) List all Books\n2) List all People\n3) List all rentals for a given person id\n4) Create a Book\n"
       puts "5) Create a Rental\n6) Create a Person\n7) Exit"
       option = gets.chomp
-      break if option == '7'
-
+      if option == '7'
+        @book_accessor.store_data(@books.list_books)
+        @person_accessor.store_data(@people.list_people)
+        @rental_accessor.store_data(@rentals.list_rentals)
+        break
+      end
       check_option(option)
     end
   end

@@ -1,14 +1,14 @@
 require './nameable'
 
 class Person < Nameable
-  attr_accessor :name, :age
-  attr_reader :id, :rentals
+  attr_accessor :name, :age, :id, :parent_permission
+  attr_reader :rentals
 
-  def initialize(age:, name:, parent_permission: true)
+  def initialize(age:, name:, id:, parent_permission: true)
     super()
     @name = name
     @age = age
-    @id = Random.rand(1..1000)
+    @id = id.zero? ? Random.rand(1..1000) : id
     @parent_permission = parent_permission
     @rentals = []
   end
