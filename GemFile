@@ -3,3 +3,4 @@ source 'https://rubygems.org'
 # gem "rails"
 
 gem 'rubocop', '>= 1.30', '< 2.0'
+ gem 'rspec', '>=3.0', '< 4.0'
