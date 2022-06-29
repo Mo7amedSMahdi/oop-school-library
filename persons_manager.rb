@@ -5,8 +5,8 @@ require './person_data'
 class PersonsManager
   attr_reader :list_people
 
-  def initialize()
-    @list_people = []
+  def initialize(person_accessor)
+    @list_people = person_accessor.fetch_data
     @person_data = PersonData.new
   end
 
@@ -43,8 +43,8 @@ class PersonsManager
 
   def insert_student
     user_inputs = @person_data.student_data
-    student = Student.new(name: user_inputs['name'], age: user_inputs['age'],
-                          parent_permission: user_inputs['permission'])
+    student = Student.new(name: user_inputs[:name], age: user_inputs[:age],
+                          parent_permission: user_inputs[:permission], id: 0)
     @list_people.push(student)
     puts 'Student created Succesfully, Press 1 to return...'
     option = gets.chomp
@@ -55,10 +55,11 @@ class PersonsManager
     user_inputs = @person_data.teacher_data
     @list_people.push(
       Teacher.new(
-        age: user_inputs['age'],
-        name: user_inputs['name'],
-        specialization: user_inputs['specialization'],
-        parent_permission: user_inputs['permission']
+        age: user_inputs[:age],
+        name: user_inputs[:name],
+        specialization: user_inputs[:specialization],
+        parent_permission: user_inputs[:permission],
+        id: 0
       )
     )
     puts 'Teacher created Succesfully, Press 1 to return...'

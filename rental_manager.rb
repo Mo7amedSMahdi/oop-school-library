@@ -1,6 +1,8 @@
 class RentalManager
-  def initialize(book:, person:)
-    @list_rentals = []
+  attr_reader :list_rentals
+
+  def initialize(book:, person:, rental_accessor:)
+    @list_rentals = rental_accessor.fetch_data(person.list_people, book.list_books)
     @person_manager = person
     @books_manager = book
   end
