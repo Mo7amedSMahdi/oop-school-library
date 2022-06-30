@@ -10,7 +10,7 @@ class Solver
         word.reverse
     end
 
-    def fizzBuzz(number)
+    def fizz_buzz(number)
         if (number % 3).zero? and (number % 5).zero?
       'fizzbuzz'
     elsif (number % 3).zero?
