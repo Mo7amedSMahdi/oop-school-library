@@ -1,17 +1,17 @@
 class Solver
+  def factorial(number)
+    return 'Can not have factorial of a negative number' if number.negative?
+    return 1 if number.zero?
 
-    def factorial(number)
-        return 'Can not have factorial of a negative number' if number.negative?
-        return 1 if number == 0
-        number * factorial(number - 1)
-    end
+    number * factorial(number - 1)
+  end
 
-    def reverse(word)
-        word.reverse
-    end
+  def reverse(word)
+    word.reverse
+  end
 
-    def fizz_buzz(number)
-        if (number % 3).zero? and (number % 5).zero?
+  def fizz_buzz(number)
+    if (number % 3).zero? and (number % 5).zero?
       'fizzbuzz'
     elsif (number % 3).zero?
       'fizz'
@@ -20,5 +20,5 @@ class Solver
     else
       number.to_s
     end
-    end
+  end
 end

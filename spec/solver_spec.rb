@@ -14,10 +14,9 @@ describe Solver do
     end
 
     it 'It should return 1 if n= zero' do
-        @our_factorial = solver.factorial(0)
-        expect(@our_factorial).to eq(1)
+      @our_factorial = solver.factorial(0)
+      expect(@our_factorial).to eq(1)
     end
-
   end
 
   context 'Testing solver class => reverse' do
