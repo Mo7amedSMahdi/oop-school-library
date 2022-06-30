@@ -13,7 +13,7 @@ describe Teacher do
     end
 
     it 'Should return true' do
-    expect(teacher.can_use_services?).to eq(true)
-  end
+      expect(teacher.can_use_services?).to eq(true)
+    end
   end
 end

@@ -13,7 +13,7 @@ describe Student do
     end
 
     it "Should return ¯\(ツ)/¯" do
-    expect(student.play_hooky).to eq("¯\(ツ)/¯")
-  end
+      expect(student.play_hooky).to eq("¯\(ツ)/¯")
+    end
   end
 end
