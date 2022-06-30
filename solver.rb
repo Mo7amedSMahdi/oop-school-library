@@ -5,6 +5,10 @@ class Solver
         return 1 if number == 0
         number * factorial(number - 1)
     end
+
+    def reverse(word)
+        word.reverse
+    end
 end
 
 checker = Solver.new
