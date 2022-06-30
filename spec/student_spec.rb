@@ -11,5 +11,9 @@ describe Student do
     it 'Student should have a parent_permission= false' do
       expect(student.parent_permission).to eq(false)
     end
+
+    it "Should return ¯\(ツ)/¯" do
+    expect(student.play_hooky).to eq("¯\(ツ)/¯")
+  end
   end
 end

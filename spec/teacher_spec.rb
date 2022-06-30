@@ -11,5 +11,9 @@ describe Teacher do
     it 'Should specialize in History' do
       expect(teacher.specialization).to eq('History')
     end
+
+    it 'Should return true' do
+    expect(teacher.can_use_services?).to eq(true)
+  end
   end
 end
