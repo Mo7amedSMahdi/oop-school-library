@@ -4,14 +4,20 @@ describe Solver do
   solver = Solver.new
   context 'Testing solver class => factorial methods' do
     it 'Returns an instance of the solver class' do
-      @our_factorial = solver.factorial(2)
-      expect(@our_factorial).to eq(2)
+      @our_factorial = solver.factorial(5)
+      expect(@our_factorial).to eq(120)
     end
 
     it 'It should raise error for negative numbers' do
       @our_factorial = solver.factorial(-1)
       expect(@our_factorial).to eq 'Can not have factorial of a negative number'
     end
+
+    it 'It should return 1 if n= zero' do
+        @our_factorial = solver.factorial(0)
+        expect(@our_factorial).to eq(1)
+    end
+
   end
 
   context 'Testing solver class => reverse' do
